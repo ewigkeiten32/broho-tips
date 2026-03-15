@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Broho Footy Tipping Punters Club — Round 4</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f5f0e8;
+    font-family: 'PT Serif', serif;
+    color: #1a1a1a;
+    min-height: 100vh;
+  }
+
+  .masthead {
+    background: #1a1a1a;
+    color: #f5f0e8;
+    text-align: center;
+    padding: 18px 20px 14px;
+    border-bottom: 4px solid #c8a94a;
+  }
+
+  .masthead .pub-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.6em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .masthead .tagline {
+    font-style: italic;
+    font-size: 0.95em;
+    color: #c8a94a;
+    margin-top: 4px;
+  }
+
+  .masthead .edition {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.78em;
+    margin-top: 6px;
+    letter-spacing: 0.1em;
+    color: #aaa;
+    text-transform: uppercase;
+  }
+
+  .barbs-intro {
+    background: #c8a94a;
+    color: #1a1a1a;
+    padding: 12px 24px;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.05em;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  .barbs-intro strong { font-style: normal; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: 4px solid #1a1a1a;
+    padding: 20px;
+    box-shadow: 2px 2px 0px #ccc;
+  }
+
+  .card.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .card h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    color: #1a1a1a;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+  }
+
+  /* LEADERBOARD */
+  .leaderboard table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+  }
+
+  .leaderboard th {
+    font-family: 'Oswald', sans-serif;
+    text-align: left;
+    padding: 6px 8px;
+    background: #1a1a1a;
+    color: #c8a94a;
+    font-size: 0.8em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .leaderboard td {
+    padding: 7px 8px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+  }
+
+  .leaderboard tr:nth-child(even) td { background: #fafafa; }
+  .leaderboard tr:hover td { background: #fff8e7; }
+
+  .pos { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.1em; color: #888; }
+  .pos.gold { color: #c8a94a; }
+  .pos.silver { color: #999; }
+  .pos.bronze { color: #b87333; }
+
+  .tip-name { font-weight: 700; }
+  .tip-team { font-size: 0.78em; color: #666; }
+  .tip-snark { font-style: italic; font-size: 0.78em; color: #c0392b; display: block; }
+  .tip-pts { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.2em; }
+  .trend-up { color: #27ae60; }
+  .trend-dn { color: #c0392b; }
+  .trend-flat { color: #999; }
+
+  /* WOODEN SPOON */
+  .spoon-card {
+    border-top-color: #c0392b;
+  }
+  .spoon-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .spoon-emoji { font-size: 3.5em; line-height: 1; }
+  .spoon-text h3 { font-family: 'Oswald', sans-serif; font-size: 1.3em; color: #c0392b; }
+  .spoon-text p { font-style: italic; font-size: 0.9em; margin-top: 4px; color: #444; }
+  .spoon-stat { font-family: 'Oswald', sans-serif; font-size: 0.85em; color: #888; margin-top: 6px; }
+
+  /* ROUND WINNER */
+  .winner-card { border-top-color: #c8a94a; }
+  .winner-content { display: flex; align-items: center; gap: 16px; }
+  .winner-emoji { font-size: 3.5em; line-height: 1; }
+  .winner-text h3 { font-family: 'Oswald', sans-serif; font-size: 1.3em; color: #c8a94a; }
+  .winner-text p { font-style: italic; font-size: 0.9em; margin-top: 4px; color: #444; }
+
+  /* PUNTING */
+  .punting-card { border-top-color: #2c7a2c; }
+  .punt-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px dashed #ddd;
+    gap: 12px;
+  }
+  .punt-line:last-child { border-bottom: none; }
+  .punt-match { font-weight: 700; font-size: 0.9em; }
+  .punt-pick { font-family: 'Oswald', sans-serif; color: #2c7a2c; font-size: 1em; }
+  .punt-odds { font-family: 'Oswald', sans-serif; font-size: 1.1em; font-weight: 700; }
+  .punt-note { font-style: italic; font-size: 0.78em; color: #666; display: block; margin-top: 2px; }
+
+  .chart-container { position: relative; height: 220px; }
+
+  .footer {
+    text-align: center;
+    padding: 16px;
+    font-style: italic;
+    font-size: 0.8em;
+    color: #888;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+  }
+
+  @media (max-width: 680px) {
+    .grid { grid-template-columns: 1fr; }
+    .card.full-width { grid-column: 1; }
+    .masthead .pub-name { font-size: 1.6em; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="pub-name">🏉 The Barbs Bulletin</div>
+  <div class="tagline">Your weekly dose of shame, glory and punting wisdom</div>
+  <div class="edition">Broho Footy Tipping Punters Club &nbsp;·&nbsp; Round 4, 2026 &nbsp;·&nbsp; Compiled by Barbs Walsgott</div>
+</div>
+
+<div class="barbs-intro">
+  Right then. Four rounds in and some of you are already an embarrassment. <strong>Timmy</strong>, put the form guide down — clearly not helping. Let's get into it.
+</div>
+
+<div class="grid">
+
+  <!-- LEADERBOARD -->
+  <div class="card leaderboard full-width">
+    <h2>📋 The Ladder of Shame &amp; Glory</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>R1</th><th>R2</th><th>R3</th><th>R4</th>
+          <th>Total</th>
+          <th>Acc%</th>
+          <th>Trend</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="pos gold">1</td>
+          <td><span class="tip-name">K-Mac</span><br><span class="tip-team">Melbourne Demons</span><span class="tip-snark">Even a broken clock...</span></td>
+          <td>7</td><td>6</td><td>7</td><td>8</td>
+          <td class="tip-pts">28</td>
+          <td>78%</td>
+          <td class="trend-up">▲</td>
+        </tr>
+        <tr>
+          <td class="pos silver">2</td>
+          <td><span class="tip-name">Russ</span><br><span class="tip-team">Geelong Cats</span><span class="tip-snark">Consistent. Boring. Winning.</span></td>
+          <td>6</td><td>7</td><td>6</td><td>7</td>
+          <td class="tip-pts">26</td>
+          <td>72%</td>
+          <td class="trend-flat">—</td>
+        </tr>
+        <tr>
+          <td class="pos bronze">3</td>
+          <td><span class="tip-name">Nije</span><br><span class="tip-team">Geelong Cats</span><span class="tip-snark">Gets it. Occasionally.</span></td>
+          <td>7</td><td>5</td><td>7</td><td>6</td>
+          <td class="tip-pts">25</td>
+          <td>69%</td>
+          <td class="trend-dn">▼</td>
+        </tr>
+        <tr>
+          <td class="pos">4</td>
+          <td><span class="tip-name">Shep</span><br><span class="tip-team">Collingwood Magpies</span><span class="tip-snark">Loves the Pies almost as much as himself.</span></td>
+          <td>5</td><td>7</td><td>6</td><td>6</td>
+          <td class="tip-pts">24</td>
+          <td>67%</td>
+          <td class="trend-flat">—</td>
+        </tr>
+        <tr>
+          <td class="pos">5</td>
+          <td><span class="tip-name">Swan</span><br><span class="tip-team">Collingwood Magpies</span><span class="tip-snark">Two Pies fans. Double the delusion.</span></td>
+          <td>6</td><td>5</td><td>6</td><td>6</td>
+          <td class="tip-pts">23</td>
+          <td>64%</td>
+          <td class="trend-flat">—</td>
+        </tr>
+        <tr>
+          <td class="pos">6</td>
+          <td><span class="tip-name">Nunn</span><br><span class="tip-team">Richmond Tigers</span><span class="tip-snark">Still living off 2019.</span></td>
+          <td>5</td><td>6</td><td>5</td><td>5</td>
+          <td class="tip-pts">21</td>
+          <td>58%</td>
+          <td class="trend-dn">▼</td>
+        </tr>
+        <tr>
+          <td class="pos">7</td>
+          <td><span class="tip-name">JJ</span><br><span class="tip-team">Carlton Blues</span><span class="tip-snark">Not from Ballarat AND can't tip. Tragic.</span></td>
+          <td>4</td><td>5</td><td>5</td><td>5</td>
+          <td class="tip-pts">19</td>
+          <td>53%</td>
+          <td class="trend-flat">—</td>
+        </tr>
+        <tr>
+          <td class="pos" style="color:#c0392b">8</td>
+          <td><span class="tip-name">Timmy</span><br><span class="tip-team">Essendon Bombers</span><span class="tip-snark">🥄 On wooden spoon watch. Week 4.</span></td>
+          <td>3</td><td>4</td><td>4</td><td>5</td>
+          <td class="tip-pts">16</td>
+          <td>44%</td>
+          <td class="trend-up">▲</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FORM CHART -->
+  <div class="card">
+    <h2>📈 Points Per Round — Form Guide</h2>
+    <div class="chart-container">
+      <canvas id="formChart"></canvas>
+    </div>
+  </div>
+
+  <!-- ACCURACY CHART -->
+  <div class="card">
+    <h2>🎯 Season Accuracy %</h2>
+    <div class="chart-container">
+      <canvas id="accChart"></canvas>
+    </div>
+  </div>
+
+  <!-- ROUND WINNER -->
+  <div class="card winner-card">
+    <h2>🏆 Round 4 Winner</h2>
+    <div class="winner-content">
+      <div class="winner-emoji">🏅</div>
+      <div class="winner-text">
+        <h3>K-Mac — 8/9</h3>
+        <p>"Eight out of nine. I don't know whether to be impressed or suspicious. Either way, well done Kevin, you magnificent pest."</p>
+        <p style="margin-top:8px; font-style:italic; font-size:0.82em; color:#888;">Runner-up: Russ & Nije tied on 7. As expected, the Cats boys clean up the minor placings.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WOODEN SPOON -->
+  <div class="card spoon-card">
+    <h2>🥄 Wooden Spoon Watch</h2>
+    <div class="spoon-content">
+      <div class="spoon-emoji">🥄</div>
+      <div class="spoon-text">
+        <h3>Timmy — 16 pts</h3>
+        <p>"Four rounds, 44% accuracy. The Bombers haven't been this bad since 2016 and somehow Timmy's tipping is worse. I've seen year 8 students with better footy instincts, darl."</p>
+        <div class="spoon-stat">Gap to safety (JJ): 3 points &nbsp;·&nbsp; Rounds remaining: 22</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PUNTING LINES -->
+  <div class="card punting-card full-width">
+    <h2>💸 Barbs' Punting Lines — Round 5</h2>
+    <div class="punt-line">
+      <div>
+        <div class="punt-match">Geelong v Hawthorn</div>
+        <span class="punt-note">Cats at home, Hawks' forwards misfiring. Easy money.</span>
+      </div>
+      <div style="text-align:right">
+        <div class="punt-pick">Geelong -9.5</div>
+        <div class="punt-odds">$1.85</div>
+      </div>
+    </div>
+    <div class="punt-line">
+      <div>
+        <div class="punt-match">Collingwood v Carlton</div>
+        <span class="punt-note">JJ won't like this but the Pies are value here. Sorry love.</span>
+      </div>
+      <div style="text-align:right">
+        <div class="punt-pick">Collingwood -5.5</div>
+        <div class="punt-odds">$1.90</div>
+      </div>
+    </div>
+    <div class="punt-line">
+      <div>
+        <div class="punt-match">Melbourne v Richmond</div>
+        <span class="punt-note">Nunn wants the Tigs but I'm not a charity. Dees by plenty.</span>
+      </div>
+      <div style="text-align:right">
+        <div class="punt-pick">Melbourne -12.5</div>
+        <div class="punt-odds">$1.95</div>
+      </div>
+    </div>
+    <div class="punt-line">
+      <div>
+        <div class="punt-match">Essendon v GWS</div>
+        <span class="punt-note">Timmy screaming at the screen won't help. GWS first four.</span>
+      </div>
+      <div style="text-align:right">
+        <div class="punt-pick">GWS +3.5</div>
+        <div class="punt-odds">$2.10</div>
+      </div>
+    </div>
+    <p style="font-style:italic; font-size:0.8em; color:#888; margin-top:12px;">⚠️ Barbs' lines are for entertainment only. Gamble responsibly. Or don't and at least have a good story about it.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  The Barbs Bulletin — Round 4, 2026 &nbsp;·&nbsp; Generated by Barbs Walsgott, Broho Footy Tipping Punters Club &nbsp;·&nbsp; Not responsible for bad bets, hurt feelings or Timmy's tips.
+</div>
+
+<script>
+const rounds = ['R1', 'R2', 'R3', 'R4'];
+const players = {
+  'K-Mac':  { data: [7,6,7,8], color: '#003399' },
+  'Russ':   { data: [6,7,6,7], color: '#1a4199' },
+  'Nije':   { data: [7,5,7,6], color: '#003a8c' },
+  'Shep':   { data: [5,7,6,6], color: '#000000' },
+  'Swan':   { data: [6,5,6,6], color: '#333333' },
+  'Nunn':   { data: [5,6,5,5], color: '#ffd700' },
+  'JJ':     { data: [4,5,5,5], color: '#0033a0' },
+  'Timmy':  { data: [3,4,4,5], color: '#c8102e' },
+};
+
+// Form chart
+const formCtx = document.getElementById('formChart').getContext('2d');
+new Chart(formCtx, {
+  type: 'line',
+  data: {
+    labels: rounds,
+    datasets: Object.entries(players).map(([name, p]) => ({
+      label: name,
+      data: p.data,
+      borderColor: p.color,
+      backgroundColor: p.color + '22',
+      tension: 0.3,
+      pointRadius: 4,
+      borderWidth: name === 'K-Mac' ? 3 : 1.5,
+    }))
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'right', labels: { font: { size: 10 }, boxWidth: 12 } } },
+    scales: {
+      y: { min: 0, max: 9, ticks: { stepSize: 1 } }
+    }
+  }
+});
+
+// Accuracy chart
+const accCtx = document.getElementById('accChart').getContext('2d');
+const names = Object.keys(players);
+const accs = [78, 72, 69, 67, 64, 58, 53, 44];
+const barColors = ['#c8a94a','#999','#b87333','#444','#555','#e8b84b','#0033a0','#c8102e'];
+
+new Chart(accCtx, {
+  type: 'bar',
+  data: {
+    labels: names,
+    datasets: [{
+      label: 'Accuracy %',
+      data: accs,
+      backgroundColor: barColors,
+      borderColor: '#1a1a1a',
+      borderWidth: 1,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { min: 0, max: 100, ticks: { callback: v => v + '%' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
