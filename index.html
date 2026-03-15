@@ -3,120 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Broho Footy Tipping Punters Club — Round 4</title>
+<title>The Barbs Bulletin — Round 1, 2026</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f5f0e8; font-family: 'PT Serif', serif; color: #1a1a1a; min-height: 100vh; }
 
-  body {
-    background: #f5f0e8;
-    font-family: 'PT Serif', serif;
-    color: #1a1a1a;
-    min-height: 100vh;
-  }
+  .masthead { background: #1a1a1a; color: #f5f0e8; text-align: center; padding: 18px 20px 14px; border-bottom: 4px solid #c8a94a; }
+  .masthead .pub-name { font-family: 'Oswald', sans-serif; font-size: 2.6em; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+  .masthead .tagline { font-style: italic; font-size: 0.95em; color: #c8a94a; margin-top: 4px; }
+  .masthead .edition { font-family: 'Oswald', sans-serif; font-size: 0.78em; margin-top: 6px; letter-spacing: 0.1em; color: #aaa; text-transform: uppercase; }
 
-  .masthead {
-    background: #1a1a1a;
-    color: #f5f0e8;
-    text-align: center;
-    padding: 18px 20px 14px;
-    border-bottom: 4px solid #c8a94a;
-  }
+  .barbs-intro { background: #c8a94a; color: #1a1a1a; padding: 12px 24px; text-align: center; font-style: italic; font-size: 1.05em; border-bottom: 2px solid #1a1a1a; }
 
-  .masthead .pub-name {
-    font-family: 'Oswald', sans-serif;
-    font-size: 2.6em;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  .masthead .tagline {
-    font-style: italic;
-    font-size: 0.95em;
-    color: #c8a94a;
-    margin-top: 4px;
-  }
-
-  .masthead .edition {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.78em;
-    margin-top: 6px;
-    letter-spacing: 0.1em;
-    color: #aaa;
-    text-transform: uppercase;
-  }
-
-  .barbs-intro {
-    background: #c8a94a;
-    color: #1a1a1a;
-    padding: 12px 24px;
-    text-align: center;
-    font-style: italic;
-    font-size: 1.05em;
-    border-bottom: 2px solid #1a1a1a;
-  }
-
-  .barbs-intro strong { font-style: normal; }
-
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    padding: 20px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .card {
-    background: #fff;
-    border: 1px solid #ccc;
-    border-top: 4px solid #1a1a1a;
-    padding: 20px;
-    box-shadow: 2px 2px 0px #ccc;
-  }
-
-  .card.full-width {
-    grid-column: 1 / -1;
-  }
-
-  .card h2 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.1em;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 14px;
-    color: #1a1a1a;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 8px;
-  }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; max-width: 1100px; margin: 0 auto; }
+  .card { background: #fff; border: 1px solid #ccc; border-top: 4px solid #1a1a1a; padding: 20px; box-shadow: 2px 2px 0px #ccc; }
+  .card.full-width { grid-column: 1 / -1; }
+  .card h2 { font-family: 'Oswald', sans-serif; font-size: 1.1em; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; color: #1a1a1a; border-bottom: 1px solid #eee; padding-bottom: 8px; }
 
   /* LEADERBOARD */
-  .leaderboard table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9em;
-  }
-
-  .leaderboard th {
-    font-family: 'Oswald', sans-serif;
-    text-align: left;
-    padding: 6px 8px;
-    background: #1a1a1a;
-    color: #c8a94a;
-    font-size: 0.8em;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .leaderboard td {
-    padding: 7px 8px;
-    border-bottom: 1px solid #f0f0f0;
-    vertical-align: middle;
-  }
-
+  .leaderboard table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+  .leaderboard th { font-family: 'Oswald', sans-serif; text-align: left; padding: 6px 8px; background: #1a1a1a; color: #c8a94a; font-size: 0.8em; letter-spacing: 0.06em; text-transform: uppercase; }
+  .leaderboard td { padding: 7px 8px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
   .leaderboard tr:nth-child(even) td { background: #fafafa; }
   .leaderboard tr:hover td { background: #fff8e7; }
 
@@ -124,63 +33,39 @@
   .pos.gold { color: #c8a94a; }
   .pos.silver { color: #999; }
   .pos.bronze { color: #b87333; }
-
   .tip-name { font-weight: 700; }
   .tip-team { font-size: 0.78em; color: #666; }
   .tip-snark { font-style: italic; font-size: 0.78em; color: #c0392b; display: block; }
-  .tip-pts { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.2em; }
-  .trend-up { color: #27ae60; }
-  .trend-dn { color: #c0392b; }
-  .trend-flat { color: #999; }
+  .tip-pts { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.1em; }
+  .net-pos { color: #27ae60; font-family: 'Oswald', sans-serif; font-weight: 700; }
+  .net-neg { color: #c0392b; font-family: 'Oswald', sans-serif; font-weight: 700; }
+  .net-zero { color: #999; font-family: 'Oswald', sans-serif; }
+  .win-loss { font-size: 0.85em; color: #666; }
 
-  /* WOODEN SPOON */
-  .spoon-card {
-    border-top-color: #c0392b;
-  }
-  .spoon-content {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .spoon-emoji { font-size: 3.5em; line-height: 1; }
-  .spoon-text h3 { font-family: 'Oswald', sans-serif; font-size: 1.3em; color: #c0392b; }
-  .spoon-text p { font-style: italic; font-size: 0.9em; margin-top: 4px; color: #444; }
-  .spoon-stat { font-family: 'Oswald', sans-serif; font-size: 0.85em; color: #888; margin-top: 6px; }
-
-  /* ROUND WINNER */
+  /* WOODEN SPOON / WINNER */
+  .spoon-card { border-top-color: #c0392b; }
   .winner-card { border-top-color: #c8a94a; }
-  .winner-content { display: flex; align-items: center; gap: 16px; }
-  .winner-emoji { font-size: 3.5em; line-height: 1; }
-  .winner-text h3 { font-family: 'Oswald', sans-serif; font-size: 1.3em; color: #c8a94a; }
-  .winner-text p { font-style: italic; font-size: 0.9em; margin-top: 4px; color: #444; }
-
-  /* PUNTING */
-  .punting-card { border-top-color: #2c7a2c; }
-  .punt-line {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 8px 0;
-    border-bottom: 1px dashed #ddd;
-    gap: 12px;
-  }
-  .punt-line:last-child { border-bottom: none; }
-  .punt-match { font-weight: 700; font-size: 0.9em; }
-  .punt-pick { font-family: 'Oswald', sans-serif; color: #2c7a2c; font-size: 1em; }
-  .punt-odds { font-family: 'Oswald', sans-serif; font-size: 1.1em; font-weight: 700; }
-  .punt-note { font-style: italic; font-size: 0.78em; color: #666; display: block; margin-top: 2px; }
+  .hero-content { display: flex; align-items: center; gap: 16px; }
+  .hero-emoji { font-size: 3.5em; line-height: 1; }
+  .hero-text h3 { font-family: 'Oswald', sans-serif; font-size: 1.3em; }
+  .hero-text h3.red { color: #c0392b; }
+  .hero-text h3.gold { color: #c8a94a; }
+  .hero-text p { font-style: italic; font-size: 0.9em; margin-top: 4px; color: #444; }
+  .hero-stat { font-family: 'Oswald', sans-serif; font-size: 0.85em; color: #888; margin-top: 6px; }
 
   .chart-container { position: relative; height: 220px; }
 
-  .footer {
-    text-align: center;
-    padding: 16px;
-    font-style: italic;
-    font-size: 0.8em;
-    color: #888;
-    border-top: 1px solid #ddd;
-    margin-top: 10px;
-  }
+  /* BET LOG */
+  .bet-log table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+  .bet-log th { font-family: 'Oswald', sans-serif; text-align: left; padding: 5px 8px; background: #1a1a1a; color: #c8a94a; font-size: 0.78em; letter-spacing: 0.06em; text-transform: uppercase; }
+  .bet-log td { padding: 6px 8px; border-bottom: 1px solid #f0f0f0; }
+  .bet-log tr:nth-child(even) td { background: #fafafa; }
+  .badge { display: inline-block; padding: 2px 7px; border-radius: 3px; font-family: 'Oswald', sans-serif; font-size: 0.8em; font-weight: 700; letter-spacing: 0.05em; }
+  .badge.win { background: #e8f8ee; color: #27ae60; }
+  .badge.loss { background: #fde8e8; color: #c0392b; }
+  .badge.nobet { background: #f0f0f0; color: #999; }
+
+  .footer { text-align: center; padding: 16px; font-style: italic; font-size: 0.8em; color: #888; border-top: 1px solid #ddd; margin-top: 10px; }
 
   @media (max-width: 680px) {
     .grid { grid-template-columns: 1fr; }
@@ -194,256 +79,216 @@
 <div class="masthead">
   <div class="pub-name">🏉 The Barbs Bulletin</div>
   <div class="tagline">Your weekly dose of shame, glory and punting wisdom</div>
-  <div class="edition">Broho Footy Tipping Punters Club &nbsp;·&nbsp; Round 4, 2026 &nbsp;·&nbsp; Compiled by Barbs Walsgott</div>
+  <div class="edition">Broho Footy Tipping Punters Club &nbsp;·&nbsp; Round 1, 2026 &nbsp;·&nbsp; Compiled by Barbs Walsgott</div>
 </div>
 
 <div class="barbs-intro">
-  Right then. Four rounds in and some of you are already an embarrassment. <strong>Timmy</strong>, put the form guide down — clearly not helping. Let's get into it.
+  One round in and it's already revealing. Russ backed Hogan twice — <em>twice</em> — and got nothing both times. Swan and Timmy couldn't even be bothered placing a bet. Right then.
 </div>
 
 <div class="grid">
 
   <!-- LEADERBOARD -->
   <div class="card leaderboard full-width">
-    <h2>📋 The Ladder of Shame &amp; Glory</h2>
+    <h2>📋 The Ledger — Season P&amp;L (per $10 stake)</h2>
     <table>
       <thead>
         <tr>
           <th>#</th>
           <th>Name</th>
-          <th>R1</th><th>R2</th><th>R3</th><th>R4</th>
-          <th>Total</th>
-          <th>Acc%</th>
-          <th>Trend</th>
+          <th>Team</th>
+          <th>W</th><th>L</th><th>No Bet</th>
+          <th>Acc %</th>
+          <th>Net P&amp;L</th>
+          <th>Verdict</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td class="pos gold">1</td>
-          <td><span class="tip-name">K-Mac</span><br><span class="tip-team">Melbourne Demons</span><span class="tip-snark">Even a broken clock...</span></td>
-          <td>7</td><td>6</td><td>7</td><td>8</td>
-          <td class="tip-pts">28</td>
-          <td>78%</td>
-          <td class="trend-up">▲</td>
+          <td class="tip-name">JJ</td>
+          <td><span class="tip-team">Carlton Blues</span></td>
+          <td>2</td><td>0</td><td>0</td>
+          <td>100%</td>
+          <td class="net-pos">+$11.70</td>
+          <td><span class="tip-snark">100% and he's not even from Ballarat. Insufferable.</span></td>
         </tr>
         <tr>
           <td class="pos silver">2</td>
-          <td><span class="tip-name">Russ</span><br><span class="tip-team">Geelong Cats</span><span class="tip-snark">Consistent. Boring. Winning.</span></td>
-          <td>6</td><td>7</td><td>6</td><td>7</td>
-          <td class="tip-pts">26</td>
-          <td>72%</td>
-          <td class="trend-flat">—</td>
+          <td class="tip-name">Nije</td>
+          <td><span class="tip-team">Geelong Cats</span></td>
+          <td>1</td><td>0</td><td>0</td>
+          <td>100%</td>
+          <td class="net-pos">+$8.20</td>
+          <td><span class="tip-snark">One bet, picked right. Don't get cocky.</span></td>
         </tr>
         <tr>
           <td class="pos bronze">3</td>
-          <td><span class="tip-name">Nije</span><br><span class="tip-team">Geelong Cats</span><span class="tip-snark">Gets it. Occasionally.</span></td>
-          <td>7</td><td>5</td><td>7</td><td>6</td>
-          <td class="tip-pts">25</td>
-          <td>69%</td>
-          <td class="trend-dn">▼</td>
+          <td class="tip-name">Nunn</td>
+          <td><span class="tip-team">Richmond Tigers</span></td>
+          <td>1</td><td>0</td><td>0</td>
+          <td>100%</td>
+          <td class="net-pos">+$3.90</td>
+          <td><span class="tip-snark">Keays for a goal. Low risk, low excitement, still counts.</span></td>
         </tr>
         <tr>
           <td class="pos">4</td>
-          <td><span class="tip-name">Shep</span><br><span class="tip-team">Collingwood Magpies</span><span class="tip-snark">Loves the Pies almost as much as himself.</span></td>
-          <td>5</td><td>7</td><td>6</td><td>6</td>
-          <td class="tip-pts">24</td>
-          <td>67%</td>
-          <td class="trend-flat">—</td>
+          <td class="tip-name">Shep</td>
+          <td><span class="tip-team">Collingwood Magpies</span></td>
+          <td>2</td><td>0</td><td>0</td>
+          <td>100%</td>
+          <td class="net-pos">+$3.40</td>
+          <td><span class="tip-snark">Backed Daicos twice at $1.17. Safe as houses, boring as hell.</span></td>
         </tr>
         <tr>
           <td class="pos">5</td>
-          <td><span class="tip-name">Swan</span><br><span class="tip-team">Collingwood Magpies</span><span class="tip-snark">Two Pies fans. Double the delusion.</span></td>
-          <td>6</td><td>5</td><td>6</td><td>6</td>
-          <td class="tip-pts">23</td>
-          <td>64%</td>
-          <td class="trend-flat">—</td>
+          <td class="tip-name">Swan</td>
+          <td><span class="tip-team">Collingwood Magpies</span></td>
+          <td>0</td><td>0</td><td>1</td>
+          <td>—</td>
+          <td class="net-zero">$0.00</td>
+          <td><span class="tip-snark">Didn't bet. Didn't lose. Didn't matter.</span></td>
         </tr>
         <tr>
-          <td class="pos">6</td>
-          <td><span class="tip-name">Nunn</span><br><span class="tip-team">Richmond Tigers</span><span class="tip-snark">Still living off 2019.</span></td>
-          <td>5</td><td>6</td><td>5</td><td>5</td>
-          <td class="tip-pts">21</td>
-          <td>58%</td>
-          <td class="trend-dn">▼</td>
+          <td class="pos">5</td>
+          <td class="tip-name">Timmy</td>
+          <td><span class="tip-team">Essendon Bombers</span></td>
+          <td>0</td><td>0</td><td>1</td>
+          <td>—</td>
+          <td class="net-zero">$0.00</td>
+          <td><span class="tip-snark">Bombers got flogged by 62 pts and Timmy couldn't even commit to a bet. Checks out.</span></td>
         </tr>
         <tr>
           <td class="pos">7</td>
-          <td><span class="tip-name">JJ</span><br><span class="tip-team">Carlton Blues</span><span class="tip-snark">Not from Ballarat AND can't tip. Tragic.</span></td>
-          <td>4</td><td>5</td><td>5</td><td>5</td>
-          <td class="tip-pts">19</td>
-          <td>53%</td>
-          <td class="trend-flat">—</td>
+          <td class="tip-name">K-Mac</td>
+          <td><span class="tip-team">Melbourne Demons</span></td>
+          <td>1</td><td>1</td><td>0</td>
+          <td>50%</td>
+          <td class="net-neg">-$5.10</td>
+          <td><span class="tip-snark">One brave, one soft. The Suns line was a reach, darl.</span></td>
         </tr>
         <tr>
           <td class="pos" style="color:#c0392b">8</td>
-          <td><span class="tip-name">Timmy</span><br><span class="tip-team">Essendon Bombers</span><span class="tip-snark">🥄 On wooden spoon watch. Week 4.</span></td>
-          <td>3</td><td>4</td><td>4</td><td>5</td>
-          <td class="tip-pts">16</td>
-          <td>44%</td>
-          <td class="trend-up">▲</td>
+          <td class="tip-name">Russ</td>
+          <td><span class="tip-team">Geelong Cats</span></td>
+          <td>0</td><td>2</td><td>0</td>
+          <td>0%</td>
+          <td class="net-neg">-$20.00</td>
+          <td><span class="tip-snark">Backed Hogan twice. Lost twice. Jesse Hogan had ZERO goals, Russ. Zero.</span></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- FORM CHART -->
+  <!-- NET P&L CHART -->
   <div class="card">
-    <h2>📈 Points Per Round — Form Guide</h2>
+    <h2>💰 Net P&amp;L — Season to Date</h2>
     <div class="chart-container">
-      <canvas id="formChart"></canvas>
+      <canvas id="pnlChart"></canvas>
     </div>
   </div>
 
-  <!-- ACCURACY CHART -->
+  <!-- WIN RATE CHART -->
   <div class="card">
-    <h2>🎯 Season Accuracy %</h2>
+    <h2>🎯 Win Rate %</h2>
     <div class="chart-container">
-      <canvas id="accChart"></canvas>
+      <canvas id="winChart"></canvas>
     </div>
   </div>
 
   <!-- ROUND WINNER -->
   <div class="card winner-card">
-    <h2>🏆 Round 4 Winner</h2>
-    <div class="winner-content">
-      <div class="winner-emoji">🏅</div>
-      <div class="winner-text">
-        <h3>K-Mac — 8/9</h3>
-        <p>"Eight out of nine. I don't know whether to be impressed or suspicious. Either way, well done Kevin, you magnificent pest."</p>
-        <p style="margin-top:8px; font-style:italic; font-size:0.82em; color:#888;">Runner-up: Russ & Nije tied on 7. As expected, the Cats boys clean up the minor placings.</p>
+    <h2>🏆 Round 1 Star</h2>
+    <div class="hero-content">
+      <div class="hero-emoji">🏅</div>
+      <div class="hero-text">
+        <h3 class="gold">JJ — 2/2, +$11.70</h3>
+        <p>Kennedy 27 disposals. Carlton first to 25. Two bets, two wins, $11.70 up. I hate that I have to say this about JJ but: well done. He's still not from Ballarat.</p>
       </div>
     </div>
   </div>
 
-  <!-- WOODEN SPOON -->
+  <!-- DUNCE -->
   <div class="card spoon-card">
-    <h2>🥄 Wooden Spoon Watch</h2>
-    <div class="spoon-content">
-      <div class="spoon-emoji">🥄</div>
-      <div class="spoon-text">
-        <h3>Timmy — 16 pts</h3>
-        <p>"Four rounds, 44% accuracy. The Bombers haven't been this bad since 2016 and somehow Timmy's tipping is worse. I've seen year 8 students with better footy instincts, darl."</p>
-        <div class="spoon-stat">Gap to safety (JJ): 3 points &nbsp;·&nbsp; Rounds remaining: 22</div>
+    <h2>🥄 Dunce of the Round</h2>
+    <div class="hero-content">
+      <div class="hero-emoji">🪦</div>
+      <div class="hero-text">
+        <h3 class="red">Russ — 0/2, -$20.00</h3>
+        <p>Hogan. Twice. Jesse Hogan in a game the Dogs won by 81 points. Not once, but twice because of the platform reset. Russ paid twice for the same mistake. That's not bad luck — that's a character flaw.</p>
+        <div class="hero-stat">R1 Set 1: Hogan 2+ goals @ $1.55 → 0 goals 🪦 &nbsp;|&nbsp; R1 Set 2: Hogan 2+ goals @ $1.54 → still 0 goals 🪦</div>
       </div>
     </div>
   </div>
 
-  <!-- PUNTING LINES -->
-  <div class="card punting-card full-width">
-    <h2>💸 Barbs' Punting Lines — Round 5</h2>
-    <div class="punt-line">
-      <div>
-        <div class="punt-match">Geelong v Hawthorn</div>
-        <span class="punt-note">Cats at home, Hawks' forwards misfiring. Easy money.</span>
-      </div>
-      <div style="text-align:right">
-        <div class="punt-pick">Geelong -9.5</div>
-        <div class="punt-odds">$1.85</div>
-      </div>
-    </div>
-    <div class="punt-line">
-      <div>
-        <div class="punt-match">Collingwood v Carlton</div>
-        <span class="punt-note">JJ won't like this but the Pies are value here. Sorry love.</span>
-      </div>
-      <div style="text-align:right">
-        <div class="punt-pick">Collingwood -5.5</div>
-        <div class="punt-odds">$1.90</div>
-      </div>
-    </div>
-    <div class="punt-line">
-      <div>
-        <div class="punt-match">Melbourne v Richmond</div>
-        <span class="punt-note">Nunn wants the Tigs but I'm not a charity. Dees by plenty.</span>
-      </div>
-      <div style="text-align:right">
-        <div class="punt-pick">Melbourne -12.5</div>
-        <div class="punt-odds">$1.95</div>
-      </div>
-    </div>
-    <div class="punt-line">
-      <div>
-        <div class="punt-match">Essendon v GWS</div>
-        <span class="punt-note">Timmy screaming at the screen won't help. GWS first four.</span>
-      </div>
-      <div style="text-align:right">
-        <div class="punt-pick">GWS +3.5</div>
-        <div class="punt-odds">$2.10</div>
-      </div>
-    </div>
-    <p style="font-style:italic; font-size:0.8em; color:#888; margin-top:12px;">⚠️ Barbs' lines are for entertainment only. Gamble responsibly. Or don't and at least have a good story about it.</p>
+  <!-- FULL BET LOG -->
+  <div class="card bet-log full-width">
+    <h2>📒 Full Bet Log — Round 1</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Round</th><th>Set</th><th>Player</th><th>Bet</th><th>Odds</th><th>Result</th><th>Note</th><th>P&amp;L</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>R1</td><td>1</td><td><strong>Russ</strong></td><td>Hogan 2+ goals</td><td>$1.55</td><td><span class="badge loss">LOSS</span></td><td>0 goals</td><td class="net-neg">-$10.00</td></tr>
+        <tr><td>R1</td><td>1</td><td><strong>JJ</strong></td><td>M. Kennedy 22+ disposals</td><td>$1.58</td><td><span class="badge win">WIN</span></td><td>27 disposals</td><td class="net-pos">+$5.80</td></tr>
+        <tr><td>R1</td><td>1</td><td><strong>K-Mac</strong></td><td>Carlton first to 25 pts</td><td>$1.49</td><td><span class="badge win">WIN</span></td><td>Carlton got there first</td><td class="net-pos">+$4.90</td></tr>
+        <tr><td>R1</td><td>1</td><td><strong>Shep</strong></td><td>N. Daicos 25+ disposals</td><td>$1.17</td><td><span class="badge win">WIN</span></td><td>33 disposals</td><td class="net-pos">+$1.70</td></tr>
+        <tr><td>R1</td><td>2</td><td><strong>Russ</strong></td><td>Hogan 2+ goals</td><td>$1.54</td><td><span class="badge loss">LOSS</span></td><td>Still 0 goals</td><td class="net-neg">-$10.00</td></tr>
+        <tr><td>R1</td><td>2</td><td><strong>JJ</strong></td><td>M. Kennedy 22+ disposals</td><td>$1.59</td><td><span class="badge win">WIN</span></td><td>27 disposals</td><td class="net-pos">+$5.90</td></tr>
+        <tr><td>R1</td><td>2</td><td><strong>K-Mac</strong></td><td>Suns line -64.5</td><td>$1.75</td><td><span class="badge loss">LOSS</span></td><td>Suns won by 59. 6 pts short.</td><td class="net-neg">-$10.00</td></tr>
+        <tr><td>R1</td><td>2</td><td><strong>Nije</strong></td><td>Tom Stewart 22+ disposals</td><td>$1.82</td><td><span class="badge win">WIN</span></td><td>27 possessions</td><td class="net-pos">+$8.20</td></tr>
+        <tr><td>R1</td><td>2</td><td><strong>Nunn</strong></td><td>Ben Keays 1+ goal</td><td>$1.39</td><td><span class="badge win">WIN</span></td><td>1 goal</td><td class="net-pos">+$3.90</td></tr>
+        <tr><td>R1</td><td>2</td><td><strong>Shep</strong></td><td>N. Daicos 25+ disposals</td><td>$1.17</td><td><span class="badge win">WIN</span></td><td>33 disposals</td><td class="net-pos">+$1.70</td></tr>
+        <tr><td>R1</td><td>2</td><td><strong>Swan</strong></td><td>—</td><td>—</td><td><span class="badge nobet">NO BET</span></td><td>Didn't tip</td><td class="net-zero">$0.00</td></tr>
+        <tr><td>R1</td><td>2</td><td><strong>Timmy</strong></td><td>—</td><td>—</td><td><span class="badge nobet">NO BET</span></td><td>Didn't tip</td><td class="net-zero">$0.00</td></tr>
+      </tbody>
+    </table>
   </div>
 
 </div>
 
 <div class="footer">
-  The Barbs Bulletin — Round 4, 2026 &nbsp;·&nbsp; Generated by Barbs Walsgott, Broho Footy Tipping Punters Club &nbsp;·&nbsp; Not responsible for bad bets, hurt feelings or Timmy's tips.
+  The Barbs Bulletin — Round 1, 2026 &nbsp;·&nbsp; Broho Footy Tipping Punters Club &nbsp;·&nbsp; Compiled by Barbs Walsgott &nbsp;·&nbsp; $10 stake per bet &nbsp;·&nbsp; Not responsible for Russ's life choices.
 </div>
 
 <script>
-const rounds = ['R1', 'R2', 'R3', 'R4'];
-const players = {
-  'K-Mac':  { data: [7,6,7,8], color: '#003399' },
-  'Russ':   { data: [6,7,6,7], color: '#1a4199' },
-  'Nije':   { data: [7,5,7,6], color: '#003a8c' },
-  'Shep':   { data: [5,7,6,6], color: '#000000' },
-  'Swan':   { data: [6,5,6,6], color: '#333333' },
-  'Nunn':   { data: [5,6,5,5], color: '#ffd700' },
-  'JJ':     { data: [4,5,5,5], color: '#0033a0' },
-  'Timmy':  { data: [3,4,4,5], color: '#c8102e' },
-};
+// Net P&L chart
+const pnlCtx = document.getElementById('pnlChart').getContext('2d');
+const names  = ['JJ','Nije','Nunn','Shep','Swan','Timmy','K-Mac','Russ'];
+const nets   = [11.70, 8.20, 3.90, 3.40, 0, 0, -5.10, -20.00];
+const barColors = nets.map(v => v > 0 ? '#27ae60' : v < 0 ? '#c0392b' : '#bbb');
 
-// Form chart
-const formCtx = document.getElementById('formChart').getContext('2d');
-new Chart(formCtx, {
-  type: 'line',
-  data: {
-    labels: rounds,
-    datasets: Object.entries(players).map(([name, p]) => ({
-      label: name,
-      data: p.data,
-      borderColor: p.color,
-      backgroundColor: p.color + '22',
-      tension: 0.3,
-      pointRadius: 4,
-      borderWidth: name === 'K-Mac' ? 3 : 1.5,
-    }))
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: { legend: { position: 'right', labels: { font: { size: 10 }, boxWidth: 12 } } },
-    scales: {
-      y: { min: 0, max: 9, ticks: { stepSize: 1 } }
-    }
-  }
-});
-
-// Accuracy chart
-const accCtx = document.getElementById('accChart').getContext('2d');
-const names = Object.keys(players);
-const accs = [78, 72, 69, 67, 64, 58, 53, 44];
-const barColors = ['#c8a94a','#999','#b87333','#444','#555','#e8b84b','#0033a0','#c8102e'];
-
-new Chart(accCtx, {
+new Chart(pnlCtx, {
   type: 'bar',
   data: {
     labels: names,
-    datasets: [{
-      label: 'Accuracy %',
-      data: accs,
-      backgroundColor: barColors,
-      borderColor: '#1a1a1a',
-      borderWidth: 1,
-    }]
+    datasets: [{ label: 'Net P&L ($)', data: nets, backgroundColor: barColors, borderColor: '#1a1a1a', borderWidth: 1 }]
   },
   options: {
-    responsive: true,
-    maintainAspectRatio: false,
+    responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false } },
-    scales: {
-      y: { min: 0, max: 100, ticks: { callback: v => v + '%' } }
-    }
+    scales: { y: { ticks: { callback: v => '$'+v } } }
+  }
+});
+
+// Win rate chart
+const winCtx = document.getElementById('winChart').getContext('2d');
+const winNames  = ['JJ','Nije','Nunn','Shep','K-Mac','Russ'];
+const winRates  = [100, 100, 100, 100, 50, 0];
+const winColors = ['#0033a0','#003a8c','#ffd700','#000','#003399','#1a4199'];
+
+new Chart(winCtx, {
+  type: 'bar',
+  data: {
+    labels: winNames,
+    datasets: [{ label: 'Win %', data: winRates, backgroundColor: winColors, borderColor: '#1a1a1a', borderWidth: 1 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { min: 0, max: 100, ticks: { callback: v => v+'%' } } }
   }
 });
 </script>
