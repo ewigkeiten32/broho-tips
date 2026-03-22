@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Barbs Bulletin — Round 1, 2026</title>
+<title>The Barbs Bulletin — Round 2, 2026</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
@@ -60,10 +60,19 @@
   .bet-log th { font-family: 'Oswald', sans-serif; text-align: left; padding: 5px 8px; background: #1a1a1a; color: #c8a94a; font-size: 0.78em; letter-spacing: 0.06em; text-transform: uppercase; }
   .bet-log td { padding: 6px 8px; border-bottom: 1px solid #f0f0f0; }
   .bet-log tr:nth-child(even) td { background: #fafafa; }
+  .bet-log tr.r2 td { background: #fffbe6; }
+  .bet-log tr.r2:nth-child(even) td { background: #fff8d6; }
   .badge { display: inline-block; padding: 2px 7px; border-radius: 3px; font-family: 'Oswald', sans-serif; font-size: 0.8em; font-weight: 700; letter-spacing: 0.05em; }
   .badge.win { background: #e8f8ee; color: #27ae60; }
   .badge.loss { background: #fde8e8; color: #c0392b; }
   .badge.nobet { background: #f0f0f0; color: #999; }
+  .badge.notplaced { background: #fff3cd; color: #856404; }
+
+  .streak-chip { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; font-family: 'Oswald', sans-serif; background: #f0f0f0; }
+  .streak-fire { background: #fff3e0; color: #e65100; }
+  .streak-heat { background: #fce4ec; color: #880e4f; }
+  .streak-yes { background: #e8f5e9; color: #2e7d32; }
+  .streak-bagel { background: #f5f5f5; color: #757575; }
 
   .footer { text-align: center; padding: 16px; font-style: italic; font-size: 0.8em; color: #888; border-top: 1px solid #ddd; margin-top: 10px; }
 
@@ -79,11 +88,11 @@
 <div class="masthead">
   <div class="pub-name">🏉 The Barbs Bulletin</div>
   <div class="tagline">Your weekly dose of shame, glory and punting wisdom</div>
-  <div class="edition">Broho Footy Tipping Punters Club &nbsp;·&nbsp; Round 1, 2026 &nbsp;·&nbsp; Compiled by Barbs Walsgott</div>
+  <div class="edition">Broho Footy Tipping Punters Club &nbsp;·&nbsp; Round 2, 2026 &nbsp;·&nbsp; Compiled by Barbs Walsgott</div>
 </div>
 
 <div class="barbs-intro">
-  One round in and it's already revealing. Russ backed Hogan twice — <em>twice</em> — and got nothing both times. Swan and Timmy couldn't even be bothered placing a bet. Right then.
+  Two rounds in. JJ is four-from-four and he's not even from Ballarat. Russ is four-from-four in the wrong direction. Swan still hasn't placed a bet. I've seen better discipline from Year 10.
 </div>
 
 <div class="grid">
@@ -100,6 +109,7 @@
           <th>W</th><th>L</th><th>No Bet</th>
           <th>Acc %</th>
           <th>Net P&amp;L</th>
+          <th>Streak</th>
           <th>Verdict</th>
         </tr>
       </thead>
@@ -108,73 +118,81 @@
           <td class="pos gold">1</td>
           <td class="tip-name">JJ</td>
           <td><span class="tip-team">Carlton Blues</span></td>
-          <td>2</td><td>0</td><td>0</td>
+          <td>4</td><td>0</td><td>0</td>
           <td>100%</td>
-          <td class="net-pos">+$11.70</td>
-          <td><span class="tip-snark">100% and he's not even from Ballarat. Insufferable.</span></td>
+          <td class="net-pos">+$19.30</td>
+          <td><span class="streak-chip streak-fire">🔥 En fuego</span></td>
+          <td><span class="tip-snark">Four from four. Kennedy again. Not from Ballarat, somehow still the best punter here.</span></td>
         </tr>
         <tr>
           <td class="pos silver">2</td>
           <td class="tip-name">Nije</td>
           <td><span class="tip-team">Geelong Cats</span></td>
-          <td>1</td><td>0</td><td>0</td>
+          <td>3</td><td>0</td><td>1</td>
           <td>100%</td>
-          <td class="net-pos">+$8.20</td>
-          <td><span class="tip-snark">One bet, picked right. Don't get cocky.</span></td>
+          <td class="net-pos">+$19.70</td>
+          <td><span class="streak-chip streak-fire">🔥 En fuego</span></td>
+          <td><span class="tip-snark">Top of the P&amp;L. Sheezel with 40 disposals sealed it. Three from three when he actually placed a bet.</span></td>
         </tr>
         <tr>
           <td class="pos bronze">3</td>
-          <td class="tip-name">Nunn</td>
-          <td><span class="tip-team">Richmond Tigers</span></td>
-          <td>1</td><td>0</td><td>0</td>
-          <td>100%</td>
-          <td class="net-pos">+$3.90</td>
-          <td><span class="tip-snark">Keays for a goal. Low risk, low excitement, still counts.</span></td>
+          <td class="tip-name">K-Mac</td>
+          <td><span class="tip-team">Melbourne Demons</span></td>
+          <td>3</td><td>1</td><td>0</td>
+          <td>75%</td>
+          <td class="net-pos">+$2.90</td>
+          <td><span class="streak-chip streak-heat">🫦 Heating up</span></td>
+          <td><span class="tip-snark">St Kilda covered the line — just. Two in a row now. That Suns bet from R1 still smarts.</span></td>
         </tr>
         <tr>
           <td class="pos">4</td>
           <td class="tip-name">Shep</td>
           <td><span class="tip-team">Collingwood Magpies</span></td>
-          <td>2</td><td>0</td><td>0</td>
-          <td>100%</td>
-          <td class="net-pos">+$3.40</td>
-          <td><span class="tip-snark">Backed Daicos twice at $1.17. Safe as houses, boring as hell.</span></td>
-        </tr>
-        <tr>
-          <td class="pos">5</td>
-          <td class="tip-name">Swan</td>
-          <td><span class="tip-team">Collingwood Magpies</span></td>
-          <td>0</td><td>0</td><td>1</td>
-          <td>—</td>
-          <td class="net-zero">$0.00</td>
-          <td><span class="tip-snark">Didn't bet. Didn't lose. Didn't matter.</span></td>
+          <td>3</td><td>1</td><td>0</td>
+          <td>75%</td>
+          <td class="net-neg">-$1.90</td>
+          <td><span class="streak-chip streak-fire">🔥 En fuego</span></td>
+          <td><span class="tip-snark">Butters with 36 disposals — that's the form pick of the round. Three in a row now.</span></td>
         </tr>
         <tr>
           <td class="pos">5</td>
           <td class="tip-name">Timmy</td>
           <td><span class="tip-team">Essendon Bombers</span></td>
-          <td>0</td><td>0</td><td>1</td>
-          <td>—</td>
-          <td class="net-zero">$0.00</td>
-          <td><span class="tip-snark">Bombers got flogged by 62 pts and Timmy couldn't even commit to a bet. Checks out.</span></td>
+          <td>2</td><td>0</td><td>2</td>
+          <td>100%</td>
+          <td class="net-pos">+$4.60</td>
+          <td><span class="streak-chip streak-heat">🫦 Heating up</span></td>
+          <td><span class="tip-snark">When he shows up, he wins. Gunston delivered. Two from two across the season when he bothers.</span></td>
         </tr>
         <tr>
-          <td class="pos">7</td>
-          <td class="tip-name">K-Mac</td>
-          <td><span class="tip-team">Melbourne Demons</span></td>
-          <td>1</td><td>1</td><td>0</td>
-          <td>50%</td>
-          <td class="net-neg">-$5.10</td>
-          <td><span class="tip-snark">One brave, one soft. The Suns line was a reach, darl.</span></td>
+          <td class="pos">6</td>
+          <td class="tip-name">Nunn</td>
+          <td><span class="tip-team">Richmond Tigers</span></td>
+          <td>2</td><td>1</td><td>1</td>
+          <td>67%</td>
+          <td class="net-neg">-$4.60</td>
+          <td><span class="streak-chip streak-bagel">🥯 Bagels</span></td>
+          <td><span class="tip-snark">Backed Norf to win. West Coast had other ideas. Started hot, cooled right off.</span></td>
         </tr>
         <tr>
-          <td class="pos" style="color:#c0392b">8</td>
+          <td class="pos" style="color:#c0392b">7</td>
           <td class="tip-name">Russ</td>
           <td><span class="tip-team">Geelong Cats</span></td>
-          <td>0</td><td>2</td><td>0</td>
+          <td>0</td><td>4</td><td>0</td>
           <td>0%</td>
-          <td class="net-neg">-$20.00</td>
-          <td><span class="tip-snark">Backed Hogan twice. Lost twice. Jesse Hogan had ZERO goals, Russ. Zero.</span></td>
+          <td class="net-neg">-$40.00</td>
+          <td><span class="streak-chip streak-bagel">🥯 Bagels</span></td>
+          <td><span class="tip-snark">Four rounds. Zero wins. Down $40. Hogan twice, then Darcy. Crinimal.</span></td>
+        </tr>
+        <tr>
+          <td class="pos">8</td>
+          <td class="tip-name">Swan</td>
+          <td><span class="tip-team">Collingwood Magpies</span></td>
+          <td>0</td><td>0</td><td>4</td>
+          <td>—</td>
+          <td class="net-zero">$0.00</td>
+          <td><span class="streak-chip streak-bagel">🥯 Bagels</span></td>
+          <td><span class="tip-snark">Four rounds. Zero bets. I genuinely don't know why I bother sending him the reminder.</span></td>
         </tr>
       </tbody>
     </table>
@@ -198,12 +216,13 @@
 
   <!-- ROUND WINNER -->
   <div class="card winner-card">
-    <h2>🏆 Round 1 Star</h2>
+    <h2>🏆 Round 2 Star</h2>
     <div class="hero-content">
-      <div class="hero-emoji">🏅</div>
+      <div class="hero-emoji">🔥</div>
       <div class="hero-text">
-        <h3 class="gold">JJ — 2/2, +$11.70</h3>
-        <p>Kennedy 27 disposals. Carlton first to 25. Two bets, two wins, $11.70 up. I hate that I have to say this about JJ but: well done. He's still not from Ballarat.</p>
+        <h3 class="gold">Shep — Butters, 36 disposals</h3>
+        <p>Port Adelaide demolished Essendon by 63 points and Butters was all over it. 36 disposals, comfortably over the 28+ line. Three in a row for Shep — quietly becoming a threat. Daicos every week was boring. This is better.</p>
+        <div class="hero-stat">Butters 28+ disposals @ $1.47 → ✅ 36 disposals</div>
       </div>
     </div>
   </div>
@@ -214,35 +233,59 @@
     <div class="hero-content">
       <div class="hero-emoji">🪦</div>
       <div class="hero-text">
-        <h3 class="red">Russ — 0/2, -$20.00</h3>
-        <p>Hogan. Twice. Jesse Hogan in a game the Dogs won by 81 points. Not once, but twice because of the platform reset. Russ paid twice for the same mistake. That's not bad luck — that's a character flaw.</p>
-        <div class="hero-stat">R1 Set 1: Hogan 2+ goals @ $1.55 → 0 goals 🪦 &nbsp;|&nbsp; R1 Set 2: Hogan 2+ goals @ $1.54 → still 0 goals 🪦</div>
+        <h3 class="red">Russ — Darcy, 1 goal</h3>
+        <p>Sam Darcy. 2+ goals. $1.27. In a game the Dogs won. Darcy kicked one and apparently called it a day. Four rounds, four losses. Hogan twice, now Darcy. Russ is finding new and creative ways to be wrong every single week.</p>
+        <div class="hero-stat">Sam Darcy 2+ goals @ $1.27 → ❌ 1 goal &nbsp;|&nbsp; Season record: 0W / 4L / -$40.00</div>
       </div>
     </div>
   </div>
 
   <!-- FULL BET LOG -->
   <div class="card bet-log full-width">
-    <h2>📒 Full Bet Log — Round 1</h2>
+    <h2>📒 Full Bet Log — All Rounds</h2>
     <table>
       <thead>
         <tr>
-          <th>Round</th><th>Set</th><th>Player</th><th>Bet</th><th>Odds</th><th>Result</th><th>Note</th><th>P&amp;L</th>
+          <th>Round</th><th>Player</th><th>Bet</th><th>Odds</th><th>Result</th><th>Actual</th><th>P&amp;L</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>R1</td><td>1</td><td><strong>Russ</strong></td><td>Hogan 2+ goals</td><td>$1.55</td><td><span class="badge loss">LOSS</span></td><td>0 goals</td><td class="net-neg">-$10.00</td></tr>
-        <tr><td>R1</td><td>1</td><td><strong>JJ</strong></td><td>M. Kennedy 22+ disposals</td><td>$1.58</td><td><span class="badge win">WIN</span></td><td>27 disposals</td><td class="net-pos">+$5.80</td></tr>
-        <tr><td>R1</td><td>1</td><td><strong>K-Mac</strong></td><td>Carlton first to 25 pts</td><td>$1.49</td><td><span class="badge win">WIN</span></td><td>Carlton got there first</td><td class="net-pos">+$4.90</td></tr>
-        <tr><td>R1</td><td>1</td><td><strong>Shep</strong></td><td>N. Daicos 25+ disposals</td><td>$1.17</td><td><span class="badge win">WIN</span></td><td>33 disposals</td><td class="net-pos">+$1.70</td></tr>
-        <tr><td>R1</td><td>2</td><td><strong>Russ</strong></td><td>Hogan 2+ goals</td><td>$1.54</td><td><span class="badge loss">LOSS</span></td><td>Still 0 goals</td><td class="net-neg">-$10.00</td></tr>
-        <tr><td>R1</td><td>2</td><td><strong>JJ</strong></td><td>M. Kennedy 22+ disposals</td><td>$1.59</td><td><span class="badge win">WIN</span></td><td>27 disposals</td><td class="net-pos">+$5.90</td></tr>
-        <tr><td>R1</td><td>2</td><td><strong>K-Mac</strong></td><td>Suns line -64.5</td><td>$1.75</td><td><span class="badge loss">LOSS</span></td><td>Suns won by 59. 6 pts short.</td><td class="net-neg">-$10.00</td></tr>
-        <tr><td>R1</td><td>2</td><td><strong>Nije</strong></td><td>Tom Stewart 22+ disposals</td><td>$1.82</td><td><span class="badge win">WIN</span></td><td>27 possessions</td><td class="net-pos">+$8.20</td></tr>
-        <tr><td>R1</td><td>2</td><td><strong>Nunn</strong></td><td>Ben Keays 1+ goal</td><td>$1.39</td><td><span class="badge win">WIN</span></td><td>1 goal</td><td class="net-pos">+$3.90</td></tr>
-        <tr><td>R1</td><td>2</td><td><strong>Shep</strong></td><td>N. Daicos 25+ disposals</td><td>$1.17</td><td><span class="badge win">WIN</span></td><td>33 disposals</td><td class="net-pos">+$1.70</td></tr>
-        <tr><td>R1</td><td>2</td><td><strong>Swan</strong></td><td>—</td><td>—</td><td><span class="badge nobet">NO BET</span></td><td>Didn't tip</td><td class="net-zero">$0.00</td></tr>
-        <tr><td>R1</td><td>2</td><td><strong>Timmy</strong></td><td>—</td><td>—</td><td><span class="badge nobet">NO BET</span></td><td>Didn't tip</td><td class="net-zero">$0.00</td></tr>
+        <!-- OR -->
+        <tr><td>OR</td><td><strong>Russ</strong></td><td>T. Greene 1+ goal</td><td>$1.32</td><td><span class="badge loss">LOSS</span></td><td>—</td><td class="net-neg">-$10.00</td></tr>
+        <tr><td>OR</td><td><strong>JJ</strong></td><td>Brodie Kemp 1+ goal</td><td>$1.41</td><td><span class="badge win">WIN</span></td><td>—</td><td class="net-pos">+$4.10</td></tr>
+        <tr><td>OR</td><td><strong>K-Mac</strong></td><td>Jaspa Fletcher 18+ disposals</td><td>$1.28</td><td><span class="badge win">WIN</span></td><td>—</td><td class="net-pos">+$2.80</td></tr>
+        <tr><td>OR</td><td><strong>Nije</strong></td><td>Tom Stewart 20+ disposals</td><td>$1.49</td><td><span class="badge win">WIN</span></td><td>—</td><td class="net-pos">+$4.90</td></tr>
+        <tr><td>OR</td><td><strong>Nunn</strong></td><td>S. Neale 1+ goal</td><td>$1.15</td><td><span class="badge win">WIN</span></td><td>—</td><td class="net-pos">+$1.50</td></tr>
+        <tr><td>OR</td><td><strong>Shep</strong></td><td>M. Bontempelli 25+ disposals</td><td>$1.55</td><td><span class="badge loss">LOSS</span></td><td>—</td><td class="net-neg">-$10.00</td></tr>
+        <tr><td>OR</td><td><strong>Swan</strong></td><td>—</td><td>—</td><td><span class="badge nobet">NO LEG</span></td><td>—</td><td class="net-zero">$0.00</td></tr>
+        <tr><td>OR</td><td><strong>Timmy</strong></td><td>Isaac Heeney 1+ goal</td><td>$1.22</td><td><span class="badge win">WIN</span></td><td>—</td><td class="net-pos">+$2.20</td></tr>
+        <!-- R1a -->
+        <tr><td>R1a</td><td><strong>Russ</strong></td><td>Hogan 2+ goals</td><td>$1.54</td><td><span class="badge loss">LOSS</span></td><td>0 goals</td><td class="net-neg">-$10.00</td></tr>
+        <tr><td>R1a</td><td><strong>JJ</strong></td><td>M. Kennedy 22+ disposals</td><td>$1.59</td><td><span class="badge win">WIN</span></td><td>27 disposals</td><td class="net-pos">+$5.90</td></tr>
+        <tr><td>R1a</td><td><strong>K-Mac</strong></td><td>Suns line -64.5</td><td>$1.75</td><td><span class="badge loss">LOSS</span></td><td>Won by 59</td><td class="net-neg">-$10.00</td></tr>
+        <tr><td>R1a</td><td><strong>Nije</strong></td><td>Tom Stewart 22+ disposals</td><td>$1.82</td><td><span class="badge win">WIN</span></td><td>27 disposals</td><td class="net-pos">+$8.20</td></tr>
+        <tr><td>R1a</td><td><strong>Nunn</strong></td><td>Ben Keays 1+ goal</td><td>$1.39</td><td><span class="badge win">WIN</span></td><td>1 goal</td><td class="net-pos">+$3.90</td></tr>
+        <tr><td>R1a</td><td><strong>Shep</strong></td><td>N. Daicos 25+ disposals</td><td>$1.17</td><td><span class="badge win">WIN</span></td><td>33 disposals</td><td class="net-pos">+$1.70</td></tr>
+        <tr><td>R1a</td><td><strong>Swan</strong></td><td>—</td><td>—</td><td><span class="badge nobet">NO LEG</span></td><td>—</td><td class="net-zero">$0.00</td></tr>
+        <tr><td>R1a</td><td><strong>Timmy</strong></td><td>—</td><td>—</td><td><span class="badge nobet">NO LEG</span></td><td>—</td><td class="net-zero">$0.00</td></tr>
+        <!-- R1 -->
+        <tr><td>R1</td><td><strong>Russ</strong></td><td>Hogan 2+ goals</td><td>$1.55</td><td><span class="badge loss">LOSS</span></td><td>0 goals</td><td class="net-neg">-$10.00</td></tr>
+        <tr><td>R1</td><td><strong>JJ</strong></td><td>M. Kennedy 22+ disposals</td><td>$1.58</td><td><span class="badge win">WIN</span></td><td>27 disposals</td><td class="net-pos">+$5.80</td></tr>
+        <tr><td>R1</td><td><strong>K-Mac</strong></td><td>Carlton first to 25 pts</td><td>$1.49</td><td><span class="badge win">WIN</span></td><td>Carlton got there first</td><td class="net-pos">+$4.90</td></tr>
+        <tr><td>R1</td><td><strong>Nije</strong></td><td>Tom Stewart 22+ disposals</td><td>$1.82</td><td><span class="badge notplaced">NOT PLACED</span></td><td>—</td><td class="net-zero">$0.00</td></tr>
+        <tr><td>R1</td><td><strong>Nunn</strong></td><td>Tim Taranto 25+ disposals</td><td>$1.45</td><td><span class="badge notplaced">NOT PLACED</span></td><td>—</td><td class="net-zero">$0.00</td></tr>
+        <tr><td>R1</td><td><strong>Shep</strong></td><td>N. Daicos 25+ disposals</td><td>$1.17</td><td><span class="badge win">WIN</span></td><td>33 disposals</td><td class="net-pos">+$1.70</td></tr>
+        <tr><td>R1</td><td><strong>Swan</strong></td><td>—</td><td>—</td><td><span class="badge nobet">NO LEG</span></td><td>—</td><td class="net-zero">$0.00</td></tr>
+        <tr><td>R1</td><td><strong>Timmy</strong></td><td>—</td><td>—</td><td><span class="badge nobet">NO LEG</span></td><td>—</td><td class="net-zero">$0.00</td></tr>
+        <!-- R2 -->
+        <tr class="r2"><td>R2</td><td><strong>Russ</strong></td><td>Sam Darcy 2+ goals</td><td>$1.27</td><td><span class="badge loss">LOSS</span></td><td>1 goal</td><td class="net-neg">-$10.00</td></tr>
+        <tr class="r2"><td>R2</td><td><strong>JJ</strong></td><td>M. Kennedy 22+ disposals</td><td>$1.35</td><td><span class="badge win">WIN</span></td><td>—</td><td class="net-pos">+$3.50</td></tr>
+        <tr class="r2"><td>R2</td><td><strong>K-Mac</strong></td><td>St Kilda +26.5</td><td>$1.52</td><td><span class="badge win">WIN</span></td><td>Won outright</td><td class="net-pos">+$5.20</td></tr>
+        <tr class="r2"><td>R2</td><td><strong>Nije</strong></td><td>Sheezel 30+ disposals</td><td>$1.66</td><td><span class="badge win">WIN</span></td><td>40 disposals</td><td class="net-pos">+$6.60</td></tr>
+        <tr class="r2"><td>R2</td><td><strong>Nunn</strong></td><td>Norf to win</td><td>$1.48</td><td><span class="badge loss">LOSS</span></td><td>West Coast won</td><td class="net-neg">-$10.00</td></tr>
+        <tr class="r2"><td>R2</td><td><strong>Shep</strong></td><td>Butters 28+ disposals</td><td>$1.47</td><td><span class="badge win">WIN</span></td><td>36 disposals</td><td class="net-pos">+$4.70</td></tr>
+        <tr class="r2"><td>R2</td><td><strong>Swan</strong></td><td>—</td><td>—</td><td><span class="badge nobet">NO LEG</span></td><td>—</td><td class="net-zero">$0.00</td></tr>
+        <tr class="r2"><td>R2</td><td><strong>Timmy</strong></td><td>Gunston 2+ goals</td><td>$1.24</td><td><span class="badge win">WIN</span></td><td>4 goals</td><td class="net-pos">+$2.40</td></tr>
       </tbody>
     </table>
   </div>
@@ -250,14 +293,14 @@
 </div>
 
 <div class="footer">
-  The Barbs Bulletin — Round 1, 2026 &nbsp;·&nbsp; Broho Footy Tipping Punters Club &nbsp;·&nbsp; Compiled by Barbs Walsgott &nbsp;·&nbsp; $10 stake per bet &nbsp;·&nbsp; Not responsible for Russ's life choices.
+  The Barbs Bulletin — Round 2, 2026 &nbsp;·&nbsp; Broho Footy Tipping Punters Club &nbsp;·&nbsp; Compiled by Barbs Walsgott &nbsp;·&nbsp; $10 stake per bet &nbsp;·&nbsp; Not responsible for Russ's life choices.
 </div>
 
 <script>
 // Net P&L chart
 const pnlCtx = document.getElementById('pnlChart').getContext('2d');
-const names  = ['JJ','Nije','Nunn','Shep','Swan','Timmy','K-Mac','Russ'];
-const nets   = [11.70, 8.20, 3.90, 3.40, 0, 0, -5.10, -20.00];
+const names  = ['Nije','JJ','Timmy','K-Mac','Shep','Nunn','Swan','Russ'];
+const nets   = [19.70, 19.30, 4.60, 2.90, -1.90, -4.60, 0, -40.00];
 const barColors = nets.map(v => v > 0 ? '#27ae60' : v < 0 ? '#c0392b' : '#bbb');
 
 new Chart(pnlCtx, {
@@ -275,9 +318,9 @@ new Chart(pnlCtx, {
 
 // Win rate chart
 const winCtx = document.getElementById('winChart').getContext('2d');
-const winNames  = ['JJ','Nije','Nunn','Shep','K-Mac','Russ'];
-const winRates  = [100, 100, 100, 100, 50, 0];
-const winColors = ['#0033a0','#003a8c','#ffd700','#000','#003399','#1a4199'];
+const winNames  = ['JJ','Nije','Timmy','K-Mac','Shep','Nunn','Russ'];
+const winRates  = [100, 100, 100, 75, 75, 67, 0];
+const winColors = ['#0033a0','#003a8c','#cc0000','#003399','#000000','#ffd700','#1a4199'];
 
 new Chart(winCtx, {
   type: 'bar',
